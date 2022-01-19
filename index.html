@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8" />
+		<title>PDFTron WebViewer</title>
+		<style type="text/css">
+			body {
+				height: 100vh;
+				margin: 0;
+				display: flex;
+				flex-direction: column;
+			}
+
+			#viewer {
+				flex: 1;
+			}
+		</style>
+		<script src="/pdftron/lib/webviewer.min.js"></script>
+		<script type="text/javascript">
+			window.addEventListener('DOMContentLoaded', () => {
+				console.debug('loaded');
+				WebViewer({
+					licenseKey: 'INSERT_LICENSE_HERE',
+					path: './pdftron/lib',
+					preloadWorker: 'pdf'
+				}, document.getElementById('viewer'))
+					.then(x => x.UI.loadDocument('/issue.pdf'));
+			});
+		</script>
+	</head>
+
+	<body>
+		<div id="viewer"></div>
+	</body>
+
+</html>
