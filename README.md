@@ -17,3 +17,21 @@ Is there a way to prevent this behavior?
 * print the document
 
 => In the browser's print dialog you would already see the rectangles.
+
+## Fix
+
+https://www.pdftron.com/documentation/web/guides/form-field-styling/
+
+```javascript
+Webviewer(...).then(async (instance) => {
+  const { Annotations } = instance;
+
+  Annotations.WidgetAnnotation.getCustomStyles = widget => {
+    if (widget instanceof Annotations.CheckButtonWidgetAnnotation) {
+      return {
+        'border': 'none',
+      };
+    }
+  };
+});
+```
